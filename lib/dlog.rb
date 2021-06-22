@@ -10,23 +10,29 @@ module Dlog
     def method_missing(method, *args)
       caller = caller_locations.first.label
       message = args[0]
-      params = args[1..-1].blank? ? {} : args[1..-1]
-      log_to_stdout(method, caller, message, params)
+
+      log_to_stdout(method, caller, message)
     end
 
     def respond_to_missing?(method, include_private = false)
-      %i[info warn error fatal unknown].include?(method) || super
+      valid_level?(method) || super
     end
 
     private
 
-    def log_to_stdout(severity, _caller, message, _params)
-      return if Rails.env.test?
+    def valid_level?(severity)
+      %i[info warn error fatal debug].include?(severity)
+    end
 
-      severity = :unknown unless %i[info warn error fatal].include?(severity)
+    def raise_no_method_error!(severity)
+      raise NoMethodError, "undefined method '#{severity}' for Log:Class"
+    end
 
-      Sidekiq.logger.send(severity, message)
-      Rails.logger.send(severity, message)
+    def log_to_stdout(severity, caller, message)
+      raise_no_method_error!(severity) unless valid_level?(severity)
+
+      Sidekiq.logger.send(severity, caller) { message }
+      Rails.logger.send(severity, caller) { message }
     end
   end
 end
