@@ -2,10 +2,9 @@
 
 require 'rails'
 require 'sidekiq'
-require_relative 'dlog/version'
-require_relative 'dlog/formatters/json'
+require_relative 'dclog/version'
 
-module Dlog
+module Dclog
   class << self
     def method_missing(method, *args)
       caller = caller_locations.first.label

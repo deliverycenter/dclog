@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dlog'
+require 'dclog'
 require 'active_support/json'
 
 require 'simplecov'

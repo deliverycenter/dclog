@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
-require_relative 'lib/dlog/version'
+require_relative 'lib/dclog/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'dlog'
-  spec.version       = Dlog::VERSION
-  spec.authors       = ['Jairo Junior']
-  spec.email         = ['jairo.junior@deliverycenter.com']
+  spec.name          = 'dclog'
+  spec.version       = Dclog::VERSION
+  spec.authors       = ['Jairo Junior', 'Matheus Acosta', 'Vinicius Machado']
+  spec.email         = ['jairo.junior@deliverycenter.com', 'matheus.martins@deliverycenter.com',
+                        'vinicius.santana@deliverycenter.com']
 
   spec.summary       = 'A logger'
   spec.description   = 'A gem to format logs to json, and run one commando to log into sidekiq and rails'
-  spec.homepage      = 'https://github.com/deliverycenter/dlog'
+  spec.homepage      = 'https://github.com/deliverycenter/dclog'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
 
-  spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/deliverycenter/dlog'
-  spec.metadata['changelog_uri'] = 'https://github.com/deliverycenter/dlog'
+  spec.metadata['source_code_uri'] = 'https://github.com/deliverycenter/dclog'
+  spec.metadata['changelog_uri'] = 'https://github.com/deliverycenter/dclog'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
