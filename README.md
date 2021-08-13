@@ -2,9 +2,9 @@
 
 ## About
 
-vc pode configurar o environment.rb para deixar o log padrao em todos os ambientes, ou configurar apenas no production.rb (mas recomendamos que configure no env.rb para que nao tenha overwrite das configuracoes de ambiente)
-ele garante que loga o stdout/stderr tanto na maquina Rails quanto Sidekiq
-cria uma interface amigavel pro rails logger e pro sidekiq logger, tentando, inclusive, passar a funçao que chamou ele e reduzindo consideravelmente o tamanho da linha de codigo
+This gem provides you a garantee of logging stdout and stderr in both Rails and Sidekiq.
+
+It creates a friendly interface to both Rails and Sidekiq loggers, trying to throw in the called function and considerably reducing code line size.
 
 ## Installation
 
@@ -18,9 +18,7 @@ And then execute:
 
     $ bundle install
 
-explicar config logger JSON
-
-vc pode configurar o environment.rb para deixar o log padrao em todos os ambientes, ou configurar apenas no production.rb (mas recomendamos que configure no env.rb para que nao tenha overwrite das configuracoes de ambiente)
+By configuring environment.rb, you can create a standard log to all environments. You can also set it up only in production.rb, but we recomemend that you create a standard in order to avoid overwriting environments.
 
 ```ruby
 # config/environment.rb
@@ -52,21 +50,26 @@ Rails.application.initialize!
 
 ## Usage
 
-chamar a gem + nivel de severidade e ela busca automaticamente o nome do metodo
+Call gem + severity level and it automatically searches the methods name.
 
 ```ruby
-Dclog.info('Im an info log')
+# info severity
+Dclog.info('Information is key')
 
-Dclog.warn('Im an info log')
+# warn severity
+Dclog.warn('Beware of warning')
 
-Dclog.error('Im an info log')
+# error severity
+Dclog.error('Another one bites the dust')
 
-Dclog.fatal('Im an info log')
+# fatal severity
+Dclog.fatal('FATALITY')
 
-Dclog.debug('Im an info log')
+# debug severity
+Dclog.debug('Rubber duck time')
 ```
 
-verifique a possibilidade de substituir todas as chamadas de log para utilizar apenas o Dclog e não mais o logger padrao
+You should consider the possibility of replacing all log calls to only use Dclog in order to create a standard and avoid confusion.
 
 ## Development
 
