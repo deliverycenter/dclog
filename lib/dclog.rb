@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 require 'rails'
-require 'sidekiq'
 require_relative 'dclog/version'
+
+begin
+  require 'sidekiq'
+rescue LoadError
+  Rails.logger.info('The Sidekiq gem is not installed')
+end
 
 module Dclog
   class << self
@@ -30,7 +35,7 @@ module Dclog
     def log_to_stdout(severity, caller, message)
       raise_no_method_error!(severity) unless valid_level?(severity)
 
-      Sidekiq.logger.send(severity, caller) { message }
+      Sidekiq.logger.send(severity, caller) { message } if defined?(Sidekiq)
       Rails.logger.send(severity, caller) { message }
     end
   end
