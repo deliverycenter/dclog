@@ -6,7 +6,7 @@ require_relative 'dclog/version'
 begin
   require 'sidekiq'
 rescue LoadError
-  Rails.logger.info('The Sidekiq gem is not installed')
+  puts 'The Sidekiq gem is not installed'
 end
 
 module Dclog

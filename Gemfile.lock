@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dclog (0.2.0)
+    dclog (0.2.1)
       rails (>= 5.0.0)
 
 GEM
