@@ -29,7 +29,7 @@ module Dclog
     end
 
     def raise_no_method_error!(severity)
-      raise NoMethodError, "undefined method '#{severity}' for Log:Class"
+      raise NoMethodError, "undefined method '#{severity}' for Dclog:Class"
     end
 
     def log_to_stdout(severity, caller, message)

@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'dclog'
   spec.version       = Dclog::VERSION
   spec.authors       = ['Jairo Junior', 'Matheus Acosta', 'Vinicius Machado']
-  spec.email         = ['jairo.junior@deliverycenter.com', 'matheus.martins@deliverycenter.com',
+  spec.email         = ['jairo.junior@deliverycenter.com', 'matheusthebr@gmail.com',
                         'vinicius.santana@deliverycenter.com']
 
   spec.summary       = 'A logger'
