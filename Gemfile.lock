@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dclog (0.2.2)
+    dclog (0.2.3)
       rails (>= 5.0.0)
 
 GEM
@@ -88,7 +88,7 @@ GEM
     mini_portile2 (2.6.1)
     minitest (5.14.4)
     nio4r (2.5.8)
-    nokogiri (1.12.4)
+    nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     parallel (1.20.1)

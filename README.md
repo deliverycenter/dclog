@@ -30,11 +30,16 @@ Rails.application.configure do
 
   logger = ActiveSupport::Logger.new($stdout)
   logger.formatter = proc do |severity, datetime, progname, message|
+    msg_regex = message.match(Dclog::LOG_REGEX)
+    request_id = msg_regex.nil? ? nil : msg_regex[1]
+    msg = msg_regex.nil? ? message : msg_regex[2]
+
     "#{JSON.dump(
       severity: severity,
       date: datetime.strftime('%Y-%m-%d %H:%M:%S'),
       caller: progname,
-      message: message
+      request_id: request_id,
+      message: msg
     )}\n"
   end
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
