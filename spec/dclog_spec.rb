@@ -1,40 +1,8 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 RSpec.describe Dclog do
-  xdescribe 'Json Formatter' do
-    let(:log) { Dclog::Formatters::Json.new }
-
-    context 'logging with a string' do
-      it do
-        time = Time.now
-
-        expect(log.call('error', time, nil, 'Error x')).to eq({
-          severity: 'error',
-          time: time,
-          message: 'Error x'
-        }.to_json + "\r\n")
-      end
-    end
-
-    context 'logging with more keys' do
-      it do
-        time = Time.now
-
-        expect(log.call('error', time, nil,
-                        { message: 'Error', class: 'ActiveRecord', error: 'ActiveRecord::Validation::Error' }))
-          .to eq({
-            severity: 'error',
-            time: time,
-            message: {
-              message: 'Error',
-              class: 'ActiveRecord',
-              error: 'ActiveRecord::Validation::Error'
-            }
-          }.to_json + "\r\n")
-      end
-    end
-  end
-
   describe 'Dclog logging' do
     context 'Call logger with correct params' do
       let(:logger) { double('logger') }
