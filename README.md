@@ -29,19 +29,18 @@ Rails.application.configure do
   ...
 
   logger = ActiveSupport::Logger.new($stdout)
-  logger.formatter = Dclog::LogFormatter.new
+  logger.formatter = Dclog::Formatter.new
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
   level            = ENV.fetch('LOG_LEVEL', 'info')
   config.log_level = Rails.env.test? ? :warn : level.underscore.to_sym
 
   # add silencers for useless logs (optional)
+  # config.logger.formatter.add_silencer { |line| line =~ /\/favicon\.ico/ }
   # config.logger.formatter.add_silencer { |line| line =~ /\/sidekiq/ }
   # config.logger.formatter.add_silencer { |line| line =~ /\/app_health/ }
 
-  config.log_tags  = [:request_id]
-
-  ...
+  config.log_tags = [:request_id]
 end
 
 Rails.application.initialize!
