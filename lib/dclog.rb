@@ -2,6 +2,7 @@
 
 require 'rails'
 require_relative 'dclog/version'
+require_relative 'dclog/formatter'
 
 begin
   require 'sidekiq'
@@ -10,8 +11,6 @@ rescue LoadError
 end
 
 module Dclog
-  LOG_REGEX = /^\[([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})\]\s+(.+)$/.freeze
-
   class << self
     def method_missing(method, *args)
       caller = caller_locations.first.label

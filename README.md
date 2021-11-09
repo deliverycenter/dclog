@@ -29,22 +29,16 @@ Rails.application.configure do
   ...
 
   logger = ActiveSupport::Logger.new($stdout)
-  logger.formatter = proc do |severity, datetime, progname, message|
-    msg_regex = message.match(Dclog::LOG_REGEX)
-    request_id = msg_regex.nil? ? nil : msg_regex[1]
-    msg = msg_regex.nil? ? message : msg_regex[2]
-
-    "#{JSON.dump(
-      severity: severity,
-      date: datetime.strftime('%Y-%m-%d %H:%M:%S'),
-      caller: progname,
-      request_id: request_id,
-      message: msg
-    )}\n"
-  end
+  logger.formatter = Dclog::LogFormatter.new
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
+
   level            = ENV.fetch('LOG_LEVEL', 'info')
   config.log_level = Rails.env.test? ? :warn : level.underscore.to_sym
+
+  # add silencers for useless logs (optional)
+  # config.logger.formatter.add_silencer { |line| line =~ /\/sidekiq/ }
+  # config.logger.formatter.add_silencer { |line| line =~ /\/app_health/ }
+
   config.log_tags  = [:request_id]
 
   ...

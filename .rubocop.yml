@@ -23,3 +23,6 @@ Metrics/BlockLength:
 
 Style/StringConcatenation:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
